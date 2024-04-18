@@ -18,3 +18,5 @@
 ## Implementation Details
 
 ## Build and Deployment Guide
+
+Use: `docker-compose up --build` to run the system
