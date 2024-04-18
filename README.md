@@ -21,7 +21,7 @@
 
 **Dependencies:** Docker, Docker Compose
 
-**Steps:**
+### Steps:
 1. Clone the repository
 2. Run the following command to build the docker images and start the services:
 ```bash
