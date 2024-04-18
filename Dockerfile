@@ -25,4 +25,4 @@ RUN pip install mpi4py
 COPY . /app
 
 # Default command to run when starting the container
-CMD ["python3", "test.py"]
+CMD ["python3", "trapezoidal_rule.py"]
