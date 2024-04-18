@@ -19,6 +19,15 @@
 
 ## Build and Deployment Guide
 
-Use: `docker-compose up --build` to run the system
+**Dependencies:** Docker, Docker Compose
 
-If error "failed to solve: python:3.8-slim: error getting credentials - err: exit status 1, out: ``" then Manual Pull of Base Image `docker pull python:3.8-slim`
+**Steps*:**
+1. Clone the repository
+2. Run the following command to build the docker images and start the services:
+```bash
+docker-compose up --build
+```
+**Note:** If you encounter the error "failed to solve: python:3.8-slim: error getting credentials - err: exit status 1, out: ``", try manually pulling the base image with docker pull python:3.8-slim.
+
+
+
