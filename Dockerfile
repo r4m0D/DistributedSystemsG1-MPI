@@ -6,23 +6,14 @@ RUN apt-get update && apt-get install -y \
     mpich \
     libmpich-dev
 
+# Install mpi4py via pip
+RUN pip install mpi4py
+
 # Set the working directory in the container
 WORKDIR /app
-
-# Set up a virtual environment in the directory /app/env
-RUN python -m venv env
-
-# Activate the virtual environment
-ENV PATH="/app/env/bin:$PATH"
-
-# Upgrade pip in the virtual environment
-RUN pip install --upgrade pip
-
-# Install mpi4py in the virtual environment
-RUN pip install mpi4py
 
 # Copy the MPI program files into the container
 COPY . /app
 
 # Default command to run when starting the container
-CMD ["python3", "trapezoidal_rule.py"]
+CMD ["mpiexec", "-n", "4", "python", "trapezoidal_rule.py"]

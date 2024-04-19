@@ -1,0 +1,8 @@
+{
+  "slaves": {
+      "slave1": 2,
+      "slave2": 4,
+      "slave3": 3,
+      "slave4": 1
+  }
+}

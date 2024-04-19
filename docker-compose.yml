@@ -1,23 +1,22 @@
 version: '3.8'
 services:
-  slave1:
+  node1:
     build: .
-    container_name: slave1
     networks:
       - mpi_network
-  slave2:
+
+  node2:
     build: .
-    container_name: slave2
     networks:
       - mpi_network
-  slave3:
+
+  node3:
     build: .
-    container_name: slave3
     networks:
       - mpi_network
-  slave4:
+      
+  node4:
     build: .
-    container_name: slave4
     networks:
       - mpi_network
 
