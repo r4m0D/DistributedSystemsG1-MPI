@@ -14,7 +14,26 @@
 | 6  | BI12-468 | Tran Nguyen Kien Tuan | Tuso-shadoq | Report Writer - Project Documentation |
 
 ## Theoretical Foundations
+### MPI (Message Passing Interface)
+MPI stands for Message Passing Interface, a standard communication protocol for parallel programming across distributed computing systems. It enables programs to exchange data between different processes, each potentially running on a separate computer node.
 
+MPI is used to develop high-performance applications in multi-processing or multi-node environments. It offers a range of functions for sending and receiving messages, managing complex data, and optimizing resource allocation.
+
+MPI helps tackle computationally intensive scientific and engineering problems like large data analysis. It supports effective workload division and result synthesis, significantly reducing processing time for complex tasks.
+It's much simpler than that.
+![[mpi.png]]
+
+### Load Balancer
+A load balancer is a device or software that distributes workloads across multiple servers or resources. It aims to optimize resource use, enhance reliability, and increase system resilience.
+
+Load balancers are essential in large network systems and web applications to ensure no single server becomes overwhelmed. They distribute user requests across multiple servers, ensuring each operates within its capacity limits, thus speeding up response times and minimizing downtime.
+![[load-balancer.png]]
+
+### Trapezoidal Rule (Numerical Method)
+In numerical methods, the Trapezoidal Rule is a technique for approximating the area under a curve of a function, used in definite integral calculations. It operates by dividing the area under the curve into a finite number of trapezoids and summing their areas.
+
+The trapezoidal rule is a tool primarily used in mathematical and engineering fields for numerical integration, its principles can be creatively applied to enhance system analysis and decision-making in distributed computing environments, such as those involving MPI and load balancers.
+![[trapezoidal.png]]
 ## Implementation Details
 
 ## Build and Deployment Guide
