@@ -14,6 +14,7 @@
 | 6  | BI12-468 | Tran Nguyen Kien Tuan | Tuso-shadoq | Report Writer - Project Documentation |
 
 ## Theoretical Foundations
+
 ### MPI (Message Passing Interface)
 MPI stands for Message Passing Interface, a standard communication protocol for parallel programming across distributed computing systems. It enables programs to exchange data between different processes, each potentially running on a separate computer node.
 
@@ -34,6 +35,7 @@ In numerical methods, the Trapezoidal Rule is a technique for approximating the 
 
 The trapezoidal rule is a tool primarily used in mathematical and engineering fields for numerical integration, its principles can be creatively applied to enhance system analysis and decision-making in distributed computing environments, such as those involving MPI and load balancers.
 ![Trapezoidal Rule](attachments/trapezoidal.png "Trapezoidal Rule Diagram")
+
 ## Implementation Details
 
 ## Build and Deployment Guide
@@ -46,7 +48,7 @@ The trapezoidal rule is a tool primarily used in mathematical and engineering fi
 ```bash
 docker-compose up --build
 ```
-**Note:** If you encounter the error `failed to solve: python:3.8-slim: error getting credentials - err: exit status 1, out: `, try manually pulling the base image with docker pull python:3.8-slim.
+**Note:** If you encounter the error `failed to solve: python:3.8-slim: error getting credentials - err: exit status 1, out: `, try manually pulling the base image with `docker pull python:3.8-slim`.
 
 
 
