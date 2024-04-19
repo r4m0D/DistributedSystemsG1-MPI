@@ -22,18 +22,21 @@ MPI is used to develop high-performance applications in multi-processing or mult
 
 MPI helps tackle computationally intensive scientific and engineering problems like large data analysis. It supports effective workload division and result synthesis, significantly reducing processing time for complex tasks.
 It's much simpler than that.
+
 ![MPI](attachments/mpi.png "Message Passing Interface")
 
 ### Load Balancer
 A load balancer is a device or software that distributes workloads across multiple servers or resources. It aims to optimize resource use, enhance reliability, and increase system resilience.
 
 Load balancers are essential in large network systems and web applications to ensure no single server becomes overwhelmed. They distribute user requests across multiple servers, ensuring each operates within its capacity limits, thus speeding up response times and minimizing downtime.
+
 ![Load Balancer](attachments/load-balancer.png "Load Balancer Diagram")
 
 ### Trapezoidal Rule (Numerical Method)
 In numerical methods, the Trapezoidal Rule is a technique for approximating the area under a curve of a function, used in definite integral calculations. It operates by dividing the area under the curve into a finite number of trapezoids and summing their areas.
 
 The trapezoidal rule is a tool primarily used in mathematical and engineering fields for numerical integration, its principles can be creatively applied to enhance system analysis and decision-making in distributed computing environments, such as those involving MPI and load balancers.
+
 ![Trapezoidal Rule](attachments/trapezoidal.png "Trapezoidal Rule Diagram")
 
 ## Implementation Details
