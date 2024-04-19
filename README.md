@@ -43,7 +43,7 @@ The trapezoidal rule is a tool primarily used in mathematical and engineering fi
 
 ## Build and Deployment Guide
 
-**Dependencies:** Docker, Docker Compose
+**Dependencies:** Linux, Docker, Docker Compose
 
 ### Steps:
 1. Clone the repository
