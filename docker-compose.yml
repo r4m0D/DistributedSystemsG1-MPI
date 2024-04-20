@@ -3,24 +3,46 @@ services:
   slave0:
     container_name: slave0
     build: .
-    shm_size: 2gb  # Increase the size of /dev/shm
-    command: ["mpiexec", "-np", "17", "--hostfile", "/app/hostfile", "python3", "/app/slave.py"]
+    shm_size: 2gb
     volumes:
       - ./hostfile:/app/hostfile
       - ./:/app/
+    depends_on:
+      - slave1
+      - slave2
+      - slave3
+      - slave4
+    networks:
+      - mpi_net
+
   slave1:
     container_name: slave1
     build: .
     shm_size: 2gb
+    networks:
+      - mpi_net
+
   slave2:
     container_name: slave2
     build: .
     shm_size: 2gb
+    networks:
+      - mpi_net
+
   slave3:
     container_name: slave3
     build: .
     shm_size: 2gb
+    networks:
+      - mpi_net
+
   slave4:
     container_name: slave4
     build: .
     shm_size: 2gb
+    networks:
+      - mpi_net
+
+networks:
+  mpi_net:
+    driver: bridge
