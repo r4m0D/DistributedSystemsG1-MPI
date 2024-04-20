@@ -16,4 +16,4 @@ WORKDIR /app
 COPY . /app
 
 # Default command to run when starting the container
-CMD ["mpiexec", "-n", "4", "python", "trapezoidal_rule.py"]
+CMD ["python3", "slave.py"]

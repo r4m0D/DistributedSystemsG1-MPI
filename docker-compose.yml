@@ -1,25 +1,26 @@
 version: '3.8'
 services:
-  node1:
+  slave0:
+    container_name: slave0
     build: .
-    networks:
-      - mpi_network
-
-  node2:
-    build: .
-    networks:
-      - mpi_network
-
-  node3:
-    build: .
-    networks:
-      - mpi_network
-      
-  node4:
-    build: .
-    networks:
-      - mpi_network
-
-networks:
-  mpi_network:
-    driver: bridge
+    shm_size: 2gb  # Increase the size of /dev/shm
+    command: ["mpiexec", "-np", "17", "--hostfile", "/app/hostfile", "python3", "/app/slave.py"]
+    volumes:
+      - ./hostfile:/app/hostfile
+      - ./:/app/
+  slave1:
+    container_name: slave1
+    image: mpi_slave
+    shm_size: 2gb
+  slave2:
+    container_name: slave2
+    image: mpi_slave
+    shm_size: 2gb
+  slave3:
+    container_name: slave3
+    image: mpi_slave
+    shm_size: 2gb
+  slave4:
+    container_name: slave4
+    image: mpi_slave
+    shm_size: 2gb

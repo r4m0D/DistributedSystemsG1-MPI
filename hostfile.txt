@@ -1,0 +1,4 @@
+slave1 slots=5
+slave2 slots=2
+slave3 slots=7
+slave4 slots=3
