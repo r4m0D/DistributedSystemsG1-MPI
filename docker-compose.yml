@@ -10,17 +10,17 @@ services:
       - ./:/app/
   slave1:
     container_name: slave1
-    image: mpi_slave
+    build: .
     shm_size: 2gb
   slave2:
     container_name: slave2
-    image: mpi_slave
+    build: .
     shm_size: 2gb
   slave3:
     container_name: slave3
-    image: mpi_slave
+    build: .
     shm_size: 2gb
   slave4:
     container_name: slave4
-    image: mpi_slave
+    build: .
     shm_size: 2gb
