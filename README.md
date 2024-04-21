@@ -58,11 +58,13 @@ Ensure you have the following software installed:
 
 ### Deployment Steps:
 1. Clone the repository:
+
 Start by cloning the project repository to your local machine using the appropriate Git command for your repository URL.
 ```bash
 git clone https://github.com/r4m0D/DistributedSystemsG1-MPI.git
 ``` 
 2. Build and deploy the containers:
+
 Run the following command to build the Docker images and start the services. This will create a network of 5 containers comprising 1 master and 4 slaves, where the master will manage connections to the slaves.
 ```bash
 docker-compose up --build
@@ -78,7 +80,8 @@ docker pull python:3.8-slim-buster
 ```
 After pulling the image, re-run the `docker-compose up --build command`.
 
-3. Run the MPI program
+3. Run the MPI program:
+
 After the services have started, prepare the MPI environment by setting the appropriate permissions for the script with the following command:
 ```bash
 sudo chmod +x start.sh
