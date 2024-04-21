@@ -52,6 +52,7 @@ The trapezoidal rule is a tool primarily used in mathematical and engineering fi
 ## Build and Deployment Guide
 
 **Prerequisites:**
+
 Ensure you have the following software installed:
 - Docker: Required for creating containerized environments.
 - Docker Compose: Used for running multi-container Docker applications.
