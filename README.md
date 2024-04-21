@@ -92,4 +92,6 @@ Then, execute the MPI program using:
 ```
 **Configuration:** Modify the `-N` flag value in the `start.sh` file to change the number of processes running on each slave machine, allowing you to simulate different scales of the distributed system.
 
-As a result, the MPI program will run, and the master will distribute the workload across the slave nodes, demonstrating the load balancing capabilities of the system.
+## Conclusion
+
+This guide provides a straightforward process for setting up and running a distributed system with Docker containers. For more detailed configuration changes or troubleshooting, refer to the Docker and Docker Compose documentation.
