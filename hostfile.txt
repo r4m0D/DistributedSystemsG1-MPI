@@ -1,5 +1,0 @@
-master:1
-slave1:5
-slave2:2
-slave3:7
-slave4:3

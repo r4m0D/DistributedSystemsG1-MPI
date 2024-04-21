@@ -6,12 +6,12 @@
 
 | No | Student ID | Name            | GitHub id | Role |
 |----|------------|-----------------|-----------|------|
-| 1  | BI12-243 | Le Vu Hoang Linh | r4m0D | Team Leader, Developer - Trapezoidal Algorithm Implementation |
-| 2  | BI12-416 | Do Nhat Thanh | f1sh33 | Consultant, Presentation Specialist |
-| 3  | BI12-467 | Tran Duc Tuan | cs8u7 | Developer - Load Balancer Implementation |
-| 4  | BI12-368 | Vu Ngoc Minh Quan | vnkunnq | Developer - Docker Configuration |
-| 5  | BI12-325 | Nguyen Duc Nguyen | ducnguyen2410 | Report Writer - Theoretical Foundations |
-| 6  | BI12-468 | Tran Nguyen Kien Tuan | Tuso-shadoq | Report Writer - Project Documentation |
+| 1  | BI12-243 | Le Vu Hoang Linh | r4m0D | Team Leader, Developer, Report Writer |
+| 2  | BI12-416 | Do Nhat Thanh | f1sh33 | Consultant, Presentation |
+| 3  | BI12-467 | Tran Duc Tuan | cs8u7 | Developer |
+| 4  | BI12-368 | Vu Ngoc Minh Quan | vnkunnq | Developer |
+| 5  | BI12-325 | Nguyen Duc Nguyen | ducnguyen2410 | Report Writer |
+| 6  | BI12-468 | Tran Nguyen Kien Tuan | Tuso-shadoq | Report Writer |
 
 ## Theoretical Foundations
 
@@ -41,17 +41,52 @@ The trapezoidal rule is a tool primarily used in mathematical and engineering fi
 
 ## Implementation Details
 
+### Scenario
+
+
+
+### Configuration
+
+
+
 ## Build and Deployment Guide
 
-**Dependencies:** Docker, Docker Compose
+**Prerequisites:**
+Ensure you have the following software installed:
+- Docker: Required for creating containerized environments.
+- Docker Compose: Used for running multi-container Docker applications.
 
-### Steps:
-1. Clone the repository
-2. Run the following command to build the docker images and start the services:
+### Deployment Steps:
+1. Clone the repository:
+Start by cloning the project repository to your local machine using the appropriate Git command for your repository URL.
+```bash
+git clone https://github.com/r4m0D/DistributedSystemsG1-MPI.git
+``` 
+2. Build and deploy the containers:
+Run the following command to build the Docker images and start the services. This will create a network of 5 containers comprising 1 master and 4 slaves, where the master will manage connections to the slaves.
 ```bash
 docker-compose up --build
 ```
-**Note:** If you encounter the error `failed to solve: python:3.8-slim: error getting credentials - err: exit status 1, out: `, try manually pulling the base image with `docker pull python:3.8-slim`.
+**Troubleshooting:**
+- If you encounter the permission error, run the command with `sudo`:
+```bash
+sudo docker-compose up --build
+```
+- If you encounter the error `ERROR [mpi-master internal] load metadata for docker.io/library/python:3.8-slim-buster`, try pulling the image manually with:
+```bash
+docker pull python:3.8-slim-buster
+```
+After pulling the image, re-run the `docker-compose up --build command`.
 
+3. Run the MPI program
+After the services have started, prepare the MPI environment by setting the appropriate permissions for the script with the following command:
+```bash
+sudo chmod +x start.sh
+```
+Then, execute the MPI program using:
+```bash
+./start.sh
+```
+**Configuration:** Modify the `-N` flag value in the `start.sh` file to change the number of processes running on each slave machine, allowing you to simulate different scales of the distributed system.
 
-
+As a result, the MPI program will run, and the master will distribute the workload across the slave nodes, demonstrating the load balancing capabilities of the system.

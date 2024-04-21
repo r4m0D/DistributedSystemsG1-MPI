@@ -1,48 +1,72 @@
-version: '3.8'
+version: '3.7'
+
 services:
-  slave0:
-    container_name: slave0
-    build: .
-    shm_size: 2gb
+  mpi-master:
+    build:
+      context: .
+      dockerfile: Dockerfile.master
+    image: mpi-python-master
+    container_name: mpi-master
     volumes:
-      - ./hostfile:/app/hostfile
-      - ./:/app/
+      - shared-keys:/root/.ssh
+    networks:
+      - mpi-net
+
+  mpi-node-1:
+    build:
+      context: .
+      dockerfile: Dockerfile.nodes
+    image: mpi-python-worker
+    container_name: mpi-node-1
+    volumes:
+      - shared-keys:/shared-keys
+    networks:
+      - mpi-net
     depends_on:
-      - slave1
-      - slave2
-      - slave3
-      - slave4
-    networks:
-      - mpi_net
+      - mpi-master
 
-  slave1:
-    container_name: slave1
-    build: .
-    shm_size: 2gb
+  mpi-node-2:
+    build:
+      context: .
+      dockerfile: Dockerfile.nodes
+    image: mpi-python-worker
+    container_name: mpi-node-2
+    volumes:
+      - shared-keys:/shared-keys
     networks:
-      - mpi_net
+      - mpi-net
+    depends_on:
+      - mpi-master
 
-  slave2:
-    container_name: slave2
-    build: .
-    shm_size: 2gb
+  mpi-node-3:
+    build:
+      context: .
+      dockerfile: Dockerfile.nodes
+    image: mpi-python-worker
+    container_name: mpi-node-3
+    volumes:
+      - shared-keys:/shared-keys
     networks:
-      - mpi_net
+      - mpi-net
+    depends_on:
+      - mpi-master
 
-  slave3:
-    container_name: slave3
-    build: .
-    shm_size: 2gb
+  mpi-node-4:
+    build:
+      context: .
+      dockerfile: Dockerfile.nodes
+    image: mpi-python-worker
+    container_name: mpi-node-4
+    volumes:
+      - shared-keys:/shared-keys
     networks:
-      - mpi_net
+      - mpi-net
+    depends_on:
+      - mpi-master
 
-  slave4:
-    container_name: slave4
-    build: .
-    shm_size: 2gb
-    networks:
-      - mpi_net
+volumes:
+  shared-keys:
 
 networks:
-  mpi_net:
+  mpi-net:
     driver: bridge

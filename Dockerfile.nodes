@@ -1,0 +1,27 @@
+# Dockerfile.nodes
+FROM python:3.8-slim-buster
+
+# Install MPICH and OpenSSH Server
+RUN apt-get update && \
+    apt-get install -y mpich ssh && \
+    rm -rf /var/lib/apt/lists/*
+
+# Create necessary directories for SSH
+RUN mkdir /root/.ssh /run/sshd && \
+    chmod 700 /root/.ssh && \
+    touch /root/.ssh/authorized_keys && \
+    chmod 600 /root/.ssh/authorized_keys
+
+# Configure SSHD settings
+RUN echo "PermitRootLogin yes\nPasswordAuthentication no\nPubkeyAuthentication yes" >> /etc/ssh/sshd_config && \
+    echo "AuthorizedKeysFile /root/.ssh/authorized_keys" >> /etc/ssh/sshd_config
+
+# Copy initialization script (if using)
+COPY copy_key.sh /usr/local/bin/copy_key.sh
+RUN chmod +x /usr/local/bin/copy_key.sh
+
+WORKDIR /app
+RUN pip install mpi4py numpy
+COPY trapezoidal_mpi.py /app/
+EXPOSE 22
+CMD ["/usr/local/bin/copy_key.sh"]

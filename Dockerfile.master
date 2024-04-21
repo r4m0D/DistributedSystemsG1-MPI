@@ -1,0 +1,22 @@
+# Base image with Python and necessary tools
+FROM python:3.8-slim-buster
+
+# Install MPICH and OpenSSH Client
+RUN apt-get update && \
+    apt-get install -y mpich ssh && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set up SSH directory and generate SSH key pair
+RUN mkdir -p /root/.ssh && \
+    ssh-keygen -t rsa -b 4096 -f /root/.ssh/id_rsa -N "" && \
+    chmod 700 /root/.ssh && \
+    chmod 600 /root/.ssh/id_rsa && \
+    chmod 644 /root/.ssh/id_rsa.pub
+
+# Configure SSH to ignore known hosts for internal connections (not recommended for production)
+RUN echo "Host *\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" > /root/.ssh/config
+
+WORKDIR /app
+RUN pip install mpi4py numpy
+COPY trapezoidal_mpi.py /app/
+CMD ["sleep", "infinity"]
