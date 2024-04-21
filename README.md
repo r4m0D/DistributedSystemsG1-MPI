@@ -39,15 +39,11 @@ The trapezoidal rule is a tool primarily used in mathematical and engineering fi
 
 ![Trapezoidal Rule](attachments/trapezoidal.png "Trapezoidal Rule Diagram")
 
-## Implementation Details
+## Scenario
 
-### Scenario
+## Architecture
 
-
-
-### Configuration
-
-
+## Implementation
 
 ## Build and Deployment Guide
 
