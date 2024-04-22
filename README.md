@@ -15,7 +15,7 @@
 
 ## Scenario
 
-In the project, a load balancer is implemented within an MPI-based system, where a main node coordinates with worker nodes connected in a network. The main task involves numerically calculating the integral of the function `f(x)=x^2` using the trapezoidal rule from `0.0` to `1.0`, divided into `10000` sub-intervals. The main node's role is to divide the task and distribute the corresponding intervals to the worker nodes. Each worker node receives its segment of the integral, performs the calculation, and then sends the computed results back to the main node. The main node aggregates these results from all worker nodes and displays the final result, effectively managing the distribution and aggregation of the computational workload across the network.
+In the project, a load balancer is implemented within an MPI-based system, where a main node coordinates with worker nodes connected in a network. The main task involves numerically calculating the integral of the function `f(x) = x^2` using the trapezoidal rule from `0.0` to `1.0`, divided into `10000` sub-intervals. The main node's role is to divide the task and distribute the corresponding intervals to the worker nodes. Each worker node receives its segment of the integral, performs the calculation, and then sends the computed results back to the main node. The main node aggregates these results from all worker nodes and displays the final result, effectively managing the distribution and aggregation of the computational workload across the network.
 
 ## Architecture
 
@@ -27,7 +27,7 @@ The system architecture consists of a master node and multiple worker nodes conn
 
 **Input**:
 
-- The limits of the integral (`[0.0,1.0]`) and the number of sub-intervals (`10000`) to divide the integral.
+- The limits of the integral (`[0.0, 1.0]`) and the number of sub-intervals (`10000`) to divide the integral.
 - The node list (`mpi-node-1, mpi-node-2, mpi-node-3, mpi-node-4`) and the number of processes to run on each node (`10`).
 
 **Output**: The result of the integral calculation of the function `f(x)=x^2` over the specified limits, obtained by aggregating the partial results from the worker nodes.
