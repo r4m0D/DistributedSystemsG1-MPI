@@ -63,8 +63,8 @@ This implementation not only optimizes computation across multiple nodes but als
 ### Expected Input/Output
 
 - **Input**: 
-	- The limits of the integral and the number of sub-intervals to divide the integral into.
-	- The number of processes to run on each worker node, determining the granularity of the distributed computation.
+	- The limits of the integral and the number of sub-intervals to divide the integral from the `input.txt` file.
+	- The number of processes to run on each worker node, determining the granularity of the distributed computation modifiable in the `start.sh` script, after the argument `-N`.
 - **Output**: The result of the integral calculation using the trapezoidal rule, obtained by aggregating the partial results from all worker nodes.
 
 
