@@ -30,7 +30,7 @@ The system architecture consists of a master node and multiple worker nodes conn
 - The limits of the integral (`[0.0, 1.0]`) and the number of sub-intervals (`10000`) to divide the integral.
 - The node list (`mpi-node-1, mpi-node-2, mpi-node-3, mpi-node-4`) and the number of processes to run on each node (`10`).
 
-**Output**: The result of the integral calculation of the function `f(x)=x^2` over the specified limits, obtained by aggregating the partial results from the worker nodes.
+**Output**: The result of the integral calculation of the function `f(x) = x^2` over the specified limits, obtained by aggregating the partial results from the worker nodes.
 
 ## Theoretical Foundations
 
