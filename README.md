@@ -60,9 +60,17 @@ The system consists of one main node (master) and 4 worker nodes (slaves), where
 
 This implementation not only optimizes computation across multiple nodes but also ensures scalability and security, making it suitable for complex numerical tasks in distributed environments.
 
+### Expected Input/Output
+
+- **Input**: 
+	- The limits of the integral and the number of sub-intervals to divide the integral into.
+	- The number of processes to run on each worker node, determining the granularity of the distributed computation.
+- **Output**: The result of the integral calculation using the trapezoidal rule, obtained by aggregating the partial results from all worker nodes.
+
+
 ## Build and Deployment Guide
 
-**Prerequisites:**
+### Prerequisites:
 
 Ensure you have the following software installed:
 - Docker: Required for creating containerized environments.
