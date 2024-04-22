@@ -13,6 +13,25 @@
 | 5  | BI12-325 | Nguyen Duc Nguyen | ducnguyen2410 | Report Writer |
 | 6  | BI12-468 | Tran Nguyen Kien Tuan | Tuso-shadoq | Report Writer |
 
+## Scenario
+
+In the project, a load balancer is implemented within an MPI-based system, where a main node coordinates with worker nodes connected in a network. The main task involves numerically calculating the integral of the function `f(x)=x^2` using the trapezoidal rule from `0.0` to `1.0`, divided into `10000` sub-intervals. The main node's role is to divide the task and distribute the corresponding intervals to the worker nodes. Each worker node receives its segment of the integral, performs the calculation, and then sends the computed results back to the main node. The main node aggregates these results from all worker nodes and displays the final result, effectively managing the distribution and aggregation of the computational workload across the network.
+
+## Architecture
+
+The system architecture consists of a master node and multiple worker nodes connected in a network. The master node is responsible for distributing the integration task across the worker nodes, which perform the calculations and return the results to the master node for aggregation. The master node coordinates the communication and computation, ensuring efficient distribution and collection of results from the worker nodes.
+
+![Architecture](attachments/mpi-architecture.png "System Architecture")
+
+## Expected Input/Output
+
+**Input**:
+
+- The limits of the integral (`[0.0,1.0]`) and the number of sub-intervals (`10000`) to divide the integral.
+- The node list (`mpi-node-1, mpi-node-2, mpi-node-3, mpi-node-4`) and the number of processes to run on each node (`10`).
+
+**Output**: The result of the integral calculation of the function `f(x)=x^2` over the specified limits, obtained by aggregating the partial results from the worker nodes.
+
 ## Theoretical Foundations
 
 ### MPI (Message Passing Interface)
@@ -39,28 +58,21 @@ The trapezoidal rule is a tool primarily used in mathematical and engineering fi
 
 ![Trapezoidal Rule](attachments/trapezoidal.png "Trapezoidal Rule Diagram")
 
-## Scenario
+## Flows
 
-In the project, a load balancer is implemented within an MPI-based system, where a main node coordinates with worker nodes connected in a network. The main task involves numerically calculating the integral of the function `f(x)=x^2` using the trapezoidal rule from `0.0` to `1.0`, divided into `10000` sub-intervals. The main node's role is to divide the task and distribute the corresponding intervals to the worker nodes. Each worker node receives its segment of the integral, performs the calculation, and then sends the computed results back to the main node. The main node aggregates these results from all worker nodes and displays the final result, effectively managing the distribution and aggregation of the computational workload across the network.
+1. **Master Node Deployment FLow**:
 
-## Architecture and Implementation
+	![Master-Deployment](attachments/master_deploy_flow.png "Master Node Deployment Flow")	
 
-### Architecture
+2. **Worker Node Deployment Flow**:
 
-The system architecture consists of a master node and multiple worker nodes connected in a network. The master node is responsible for distributing the integration task across the worker nodes, which perform the calculations and return the results to the master node for aggregation. The master node coordinates the communication and computation, ensuring efficient distribution and collection of results from the worker nodes.
+	![Worker-Deployment](attachments/node_deploy_flow.png "Worker Node Deployment Flow")
 
-![Architecture](attachments/mpi-architecture.png "System Architecture")
+3. **MPI Execution Flow**:
 
-### Expected Input/Output
+	![MPI-Execution](attachments/execution_flow.png "MPI Execution Flow")
 
-**Input**:
-
-- The limits of the integral (`[0.0,1.0]`) and the number of sub-intervals (`10000`) to divide the integral.
-- The node list (`mpi-node-1, mpi-node-2, mpi-node-3, mpi-node-4`) and the number of processes to run on each node (`10`).
-
-**Output**: The result of the integral calculation of the function `f(x)=x^2` over the specified limits, obtained by aggregating the partial results from the worker nodes.
-
-### Implementation
+## Implementation
 
 The system consists of one main node (master) and 4 worker nodes (slaves), where the main node is responsible for distributing the integration tasks across the worker nodes.
 
@@ -117,20 +129,6 @@ Ensure you have the following software installed:
 	./start.sh
 	```
 	**Configuration:** Modify the `-N` flag value in the `start.sh` file to change the number of processes running on each slave machine, allowing you to simulate different scales of the distributed system.
-
-### Flows
-
-1. **Master Node Deployment FLow**:
-
-	![Master-Deployment](attachments/master_deploy_flow.png "Master Node Deployment Flow")	
-
-2. **Worker Node Deployment Flow**:
-
-	![Worker-Deployment](attachments/node_deploy_flow.png "Worker Node Deployment Flow")
-
-3. **MPI Execution Flow**:
-
-	![MPI-Execution](attachments/execution_flow.png "MPI Execution Flow")
 	
 ## Conclusion
 
