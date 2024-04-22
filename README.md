@@ -51,6 +51,13 @@ The system architecture consists of a master node and multiple worker nodes conn
 
 ![Architecture](attachments/mpi-architecture.png "System Architecture")
 
+### Expected Input/Output
+
+- **Input**: 
+	- The limits of the integral and the number of sub-intervals to divide the integral.
+	- The node list and the number of processes to run on each node.
+- **Output**: The result of the integral calculation using the trapezoidal rule, obtained by aggregating the partial results from all worker nodes.
+
 ### Implementation
 
 The system consists of one main node (master) and 4 worker nodes (slaves), where the main node is responsible for distributing the integration tasks across the worker nodes.
@@ -63,14 +70,6 @@ The system consists of one main node (master) and 4 worker nodes (slaves), where
 - **MPI Execution Script** (`start.sh`): This script is responsible for initiating the MPI process across the worker nodes, directing the master node to use mpiexec to run the integration task script (trapezoidal_mpi.py) on the worker nodes, specifying how many processes each node should spawn based on the configuration.
 
 This implementation not only optimizes computation across multiple nodes but also ensures scalability and security, making it suitable for complex numerical tasks in distributed environments.
-
-### Expected Input/Output
-
-- **Input**: 
-	- The limits of the integral and the number of sub-intervals to divide the integral.
-	- The node list and the number of processes to run on each node.
-- **Output**: The result of the integral calculation using the trapezoidal rule, obtained by aggregating the partial results from all worker nodes.
-
 
 ## Build and Deployment Guide
 
