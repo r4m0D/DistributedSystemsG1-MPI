@@ -47,6 +47,10 @@ In the project, a load balancer is implemented within an MPI-based system, where
 
 ### Architecture
 
+The system architecture consists of a master node and multiple worker nodes connected in a network. The master node is responsible for distributing the integration task across the worker nodes, which perform the calculations and return the results to the master node for aggregation. The master node coordinates the communication and computation, ensuring efficient distribution and collection of results from the worker nodes.
+
+![Architecture](attachments/mpi-architecture.png "System Architecture")
+
 ### Implementation
 
 The system consists of one main node (master) and 4 worker nodes (slaves), where the main node is responsible for distributing the integration tasks across the worker nodes.
@@ -112,6 +116,20 @@ Then, execute the MPI program using:
 ```
 **Configuration:** Modify the `-N` flag value in the `start.sh` file to change the number of processes running on each slave machine, allowing you to simulate different scales of the distributed system.
 
+### Flows
+
+1. **Master Node Deployment FLow**:
+
+![Master-Deployment](attachments/master_deploy_flow.png "Master Node Deployment Flow")
+
+2. **Worker Node Deployment Flow**:
+
+![Worker-Deployment](attachments/node_deploy_flow.png "Worker Node Deployment Flow")
+
+3. **MPI Execution Flow**:
+
+![MPI-Execution](attachments/execution_flow.png "MPI Execution Flow")
+	
 ## Conclusion
 
 This guide provides a straightforward process for setting up and running a distributed system with Docker containers. For more detailed configuration changes or troubleshooting, refer to the Docker and Docker Compose documentation.
