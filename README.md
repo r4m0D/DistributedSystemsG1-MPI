@@ -53,10 +53,12 @@ The system architecture consists of a master node and multiple worker nodes conn
 
 ### Expected Input/Output
 
-- **Input**: 
-	- The limits of the integral and the number of sub-intervals to divide the integral.
-	- The node list and the number of processes to run on each node.
-- **Output**: The result of the integral calculation using the trapezoidal rule, obtained by aggregating the partial results from all worker nodes.
+**Input**:
+
+- The limits of the integral and the number of sub-intervals to divide the integral.
+- The node list and the number of processes to run on each node.
+
+**Output**: The result of the integral calculation using the trapezoidal rule, obtained by aggregating the partial results from all worker nodes.
 
 ### Implementation
 
@@ -88,46 +90,47 @@ Ensure you have the following software installed:
 	``` 
 2. **Build and deploy the containers:**
 
-Run the following command to build the Docker images and start the services. This will create a network of 5 containers comprising 1 master and 4 slaves, where the master will manage connections to the slaves.
-```bash
-docker-compose up --build
-```
-**Troubleshooting:**
-- If you encounter the permission error, run the command with `sudo`:
-```bash
-sudo docker-compose up --build
-```
-- If you encounter the error `ERROR [mpi-master internal] load metadata for docker.io/library/python:3.8-slim-buster`, try pulling the image manually with:
-```bash
-docker pull python:3.8-slim-buster
-```
-After pulling the image, re-run the `docker-compose up --build command`.
+	Run the following command to build the Docker images and start the services. This will create a network of 5 containers comprising 1 master and 4 slaves, where the master will manage connections to the slaves.
+	```bash
+	docker-compose up --build
+	```
+
+	**Troubleshooting:**
+	- If you encounter the permission error, run the command with `sudo`:
+	```bash
+	sudo docker-compose up --build
+	```
+	- If you encounter the error `ERROR [mpi-master internal] load metadata for docker.io/library/python:3.8-slim-buster`, try pulling the image manually with:
+	```bash
+	docker pull python:3.8-slim-buster
+	```
+	After pulling the image, re-run the `docker-compose up --build command`.
 
 3. **Run the MPI program:**
 
-After the services have started, prepare the MPI environment by setting the appropriate permissions for the script with the following command:
-```bash
-sudo chmod +x start.sh
-```
-Then, execute the MPI program using:
-```bash
-./start.sh
-```
-**Configuration:** Modify the `-N` flag value in the `start.sh` file to change the number of processes running on each slave machine, allowing you to simulate different scales of the distributed system.
+	After the services have started, prepare the MPI environment by setting the appropriate permissions for the script with the following command:
+	```bash
+	sudo chmod +x start.sh
+	```
+	Then, execute the MPI program using:
+	```bash
+	./start.sh
+	```
+	**Configuration:** Modify the `-N` flag value in the `start.sh` file to change the number of processes running on each slave machine, allowing you to simulate different scales of the distributed system.
 
 ### Flows
 
 1. **Master Node Deployment FLow**:
 
-![Master-Deployment](attachments/master_deploy_flow.png "Master Node Deployment Flow")
+	![Master-Deployment](attachments/master_deploy_flow.png "Master Node Deployment Flow")	
 
 2. **Worker Node Deployment Flow**:
 
-![Worker-Deployment](attachments/node_deploy_flow.png "Worker Node Deployment Flow")
+	![Worker-Deployment](attachments/node_deploy_flow.png "Worker Node Deployment Flow")
 
 3. **MPI Execution Flow**:
 
-![MPI-Execution](attachments/execution_flow.png "MPI Execution Flow")
+	![MPI-Execution](attachments/execution_flow.png "MPI Execution Flow")
 	
 ## Conclusion
 
