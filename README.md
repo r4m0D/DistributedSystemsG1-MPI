@@ -43,9 +43,22 @@ The trapezoidal rule is a tool primarily used in mathematical and engineering fi
 
 In the project, a load balancer is implemented within an MPI-based system, where a main node coordinates with worker nodes connected in a network. The main task involves numerically calculating the integral of the function f(x)=x2f(x)=x2 using the trapezoidal rule. The main node's role is to divide the task and distribute the corresponding intervals to the worker nodes. Each worker node receives its segment of the integral, performs the calculation, and then sends the computed results back to the main node. The main node aggregates these results from all worker nodes and displays the final result, effectively managing the distribution and aggregation of the computational workload across the network.
 
-## Architecture
+## Architecture and Implementation
 
-## Implementation
+### Architecture
+
+### Implementation
+
+The system consists of one main node (master) and 4 worker nodes (slaves), where the main node is responsible for distributing the integration tasks across the worker nodes.
+
+- **Master Node Setup** (`Dockerfile.master`): The master node's Dockerfile sets up a Python environment with MPICH (an MPI implementation) and SSH for secure communication between nodes. It also generates SSH keys for secure connections and configures SSHD to accept key authentication, facilitating secure command execution across nodes.
+- **Worker Nodes Setup** (`Dockerfile.nodes`): Similar to the master, worker nodes are set up with Python and MPICH. These nodes are prepared to receive computation tasks from the master node.
+- **Docker Compose** (`docker-compose.yml`): This file orchestrates the setup, linking all nodes under a common network and ensuring they are equipped with necessary volumes for SSH keys and MPI configurations. It uses shared volumes to handle SSH keys, ensuring all nodes can authenticate securely without password prompts.
+- **Numerical Integration Script** (`trapezoidal_mpi.py`): This Python script utilizes MPI4py for distributed computing. It defines the function to be integrated and employs the trapezoidal rule to approximate the integral over specified limits. The script divides the task into sub-tasks distributed among the nodes, each calculating a segment of the integral, and then reduces these partial results to obtain the final integral value at the master node.
+- **SSH Key Distribution** (`copy_key.sh`): A simple shell script that appends the master's public key to the worker nodes' authorized keys, enabling the master node to communicate and execute commands on worker nodes securely via SSH without manual intervention.
+- **MPI Execution Script** (`start.sh`): This script is responsible for initiating the MPI process across the worker nodes, directing the master node to use mpiexec to run the integration task script (trapezoidal_mpi.py) on the worker nodes, specifying how many processes each node should spawn based on the configuration.
+
+This implementation not only optimizes computation across multiple nodes but also ensures scalability and security, making it suitable for complex numerical tasks in distributed environments.
 
 ## Build and Deployment Guide
 
